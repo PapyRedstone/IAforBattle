@@ -11,7 +11,7 @@ std::vector<std::vector<int>> Game::getMap(const sf::Color& col) {
   std::string data;
   std::vector<std::vector<int>> output;
 
-  mClient.send(mClient.getName() + "@getTerrainMap:3 " + std::to_string(col.r) + " " + std::to_string(col.g) + " " + std::to_string(col.b) + " ");
+  mClient.send(mClient.getName() + "@getTerrainMap:3 " + std::to_string(col.r) + " " + std::to_string(col.g) + " " + std::to_string(col.b));
 
   while ((data = mClient.receive()) == "Error") {
   }

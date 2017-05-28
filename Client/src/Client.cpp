@@ -12,6 +12,10 @@ sf::Socket::Status Client::connect(const sf::IpAddress& IP, unsigned short port,
 
   data = getData(data).second.second;
 
+  std::cout << data + "@auth:1 " + mName + " " + std::to_string(col.r) + " " +
+                   std::to_string(col.g) + " " + std::to_string(col.b)
+            << std::endl;
+
   send(data + "@auth:1 " + mName + " " + std::to_string(col.r) + " " +
        std::to_string(col.g) + " " + std::to_string(col.b));
 
