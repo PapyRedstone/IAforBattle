@@ -3,7 +3,7 @@
 #include "Game.hpp"
 
 int main() {
-  Game game("172.17.3.250", 53000, "Alex", sf::Color::Blue);
+  Game game("127.0.0.1", 53000, "Alex", sf::Color::Blue);
   std::cout << "t\n";
   auto map = game.getMap(sf::Color::Blue);
   for (auto& i : map) {
