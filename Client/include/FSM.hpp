@@ -7,8 +7,12 @@
 
 class FSM {
  public:
-  void execute(Entity& ent);
+  void execute(Game& game, const sf::Color& col, int id) {
+    mState->execute(game, col, id);
+  }
+
   void changeState(std::shared_ptr<State> newSate);
+
  private:
   std::shared_ptr<State> mState;
 };
