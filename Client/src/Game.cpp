@@ -1,6 +1,7 @@
 #include "Game.hpp"
 
-Game::Game(const sf::IpAddress& ip, unsigned short port, std::string name, const sf::Color& col)
+Game::Game(const sf::IpAddress& ip, unsigned short port, std::string name,
+           const sf::Color& col)
     : mClient(name) {
   if (mClient.connect(ip, port, col) != sf::Socket::Done) {
     std::cout << "Error connecting server" << std::endl;
@@ -11,7 +12,8 @@ std::vector<std::vector<int>> Game::getMap(const sf::Color& col) {
   std::string data;
   std::vector<std::vector<int>> output;
 
-  mClient.send(mClient.getName() + "@getTerrainMap:3 " + std::to_string(col.r) + " " + std::to_string(col.g) + " " + std::to_string(col.b));
+  mClient.send(mClient.getName() + "@getTerrainMap:3 " + std::to_string(col.r) +
+               " " + std::to_string(col.g) + " " + std::to_string(col.b));
 
   while ((data = mClient.receive()) == "Error") {
   }
@@ -31,7 +33,7 @@ std::vector<std::vector<int>> Game::getMap(const sf::Color& col) {
   for (unsigned i{0}; i < n; i++) {
     output.push_back(std::vector<int>(n));
     for (unsigned j{0}; j < n; j++) {
-      output[i][j] = std::stoi(data.substr(0, 1));
+      output[i][j] = std::stoi(data.substr(0, data.find(' ')));
       data = data.substr(data.find(' ', 1) + 1);
     }
   }
